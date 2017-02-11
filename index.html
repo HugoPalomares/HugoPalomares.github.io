@@ -4,15 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Google bot test: Dynamically inserted metas</title>
+    <!-- The tag in question. In the html is set at index, follow. -->
+    <meta name="robots" content="index, follow" />
+    <title>Google bot test</title>
     <link href="//cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Jquery is here to replicate the same scenario of the production page we are testing -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
   <body>
   <header>
-    <h1>Google bot test</h1>
+    <h1>Simple test of Google bot's JS capabilities</h1>
   </header>
+  <main>
+    <p>Have you ever had an SEO. question and went to the web in search for answers only to be overcumbered by little facts and contradicting opinions of SEO "gurus"?</p>
+    <p>Me too. This simple (very simple) test is trying to answer only 1 question: Will Google bot index a page that has a dynamically modified meta robot tag? Some opinions say that Google will only look at the meta robots tag retrieved from the header response, meaning the source code, and not pay attention to the changes done after page load by JS. Other opinions say that it will take the JS modification into acount as it is getting better at understanding the whole picture by parsin not only the document but JS and CSS external files.</p>
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <h3>Some documentation</h3>
+    <ol>
+      <li>This article says it will work but has no code examples. At the end it kind of contradicts itself with the JS time of excecution though (ugh). <a href="http://searchengineland.com/tested-googlebot-crawls-javascript-heres-learned-220157">We Tested How Googlebot Crawls Javascript And Here’s What We Learned</a></li>
+      <li>This article has a link to reddit where a Google guy states that robots.txt only takes care of the crawling but not the deindexing. To deindex, you should set your meta tags right and let it crawl. <a href="https://www.seoinc.com/seo-blog/fastest-way-to-deindex-pages/">How to Efficiently Deindex Pages</a></li>
+      <li>This link explains how disallowing crawling of your page using robots.txt won't neccesarily deindex the page and might still show in search engine results page. <a href="https://developers.google.com/webmasters/control-crawl-index/docs/faq#h17"></a>If I block Google from crawling a page using a robots.txt disallow directive, will it disappear from search results?</li>
+      <li>Article showing .htaccess example to set "noindex, nofollow" site wide in case you don't have access to the code and are unable to set the meta robots tag in the code <a href="https://yoast.com/prevent-site-being-indexed/">Preventing your site from being indexed, the right way</a></li>
+      <li>Article explaining how to remove the URL from the index using Google webmaster tools <a href="http://searchengineland.com/removing-pages-from-google-53086">Removing Content On Your Site That’s Been Indexed</a></li>
+    </ol>
+  </main>
+  <footer>
+    <p>What the hell am I looking at? Well follow this <a href="index.html">Link to readme</a> and find out!</p>
+    <p>Or go to the <a href="index-follow-dynamically-changed.html">Link to test page!</a></p>
+  </footer>
   </body>
 </html>
