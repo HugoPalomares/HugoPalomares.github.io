@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The tag in question. In the html is set at index, follow. -->
+    <meta name="robots" content="index, follow" />
+    <script>
+    window.addEventListener('load', metaRobotsChange);
+
+      function metaRobotsChange() {
+
+        var metaRobots = $("meta[name='robots']");
+        var metaRobotsContent = metaRobots.attr("content");
+
+        if (metaRobots.length && metaRobotsContent == "index, follow") {
+          $("meta[name='robots']").attr("content", "noindex, nofollow");
+        }
+
+      }
+    </script>
+    <title>Google bot test: index, follow dynamically changed</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Jquery is here to replicate the same scenario of the production page we are testing -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </head>
+  <body>
+  <header>
+    <h1>The test</h1>
+    <h2>JS to modify content of meta tag on load</h2>
+  </header>
+  <main>
+    <p>Page is loading with meta tag contet set as index, follow in the head portion of the document. But now we are using
+    and inline script, placed also in the head, to dinamically modify the content after page load.</p>
+
+    <h3>Question is: <strong>will it index?</strong></h3>
+    <p>if it does, that will be evidence that Google bot uses JS to determine the content of a page, not only the header response, and act accordingly.</p>
+  </main>
+  <footer>
+    <p>Or go to the <a href="index-follow.html">Link to control page!</a></p>
+    <p>What the hell am I looking at? Well follow this <a href="index.html">Link to readme</a>.</p>
+  </footer>
+  </body>
+</html>
