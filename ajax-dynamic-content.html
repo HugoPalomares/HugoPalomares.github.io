@@ -29,9 +29,9 @@
   <main>
     <p>In this test we will try to call for 2 types of content using AJAX: content within the same domain and a container within an external domain.</p>
     <h3>This is same domain AJAX call</h3>
-    <p id="ajax1">Here is where the AJAX response will append the text...</p>
+    <p id="ajax1" style="color:green;">Here is where the AJAX response will append the text...</p>
     <h3>And this the AJAX for the external URL content</h3>
-    <p id="ajax2">Here is where the AJAX response will append the text...</p>
+    <p id="ajax2" style="color:green;">Here is where the AJAX response will append the text...</p>
 
     <script>
       function loadSameDomainDoc() {
@@ -56,7 +56,7 @@
             console.log('Ajax 2 done');
           }
         };
-        xhttp.open("GET", "https://www.w3schools.com/xml/ajax_info.txt", true);
+        xhttp.open("GET", "https://en.wikipedia.org/wiki/Ajax_(programming)", true);
         xhttp.send();
       }
 
