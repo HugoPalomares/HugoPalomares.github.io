@@ -28,9 +28,9 @@
   </header>
   <main>
     <p>In this test we will try to call for 2 types of content using AJAX: content within the same domain and a container within an external domain.</p>
-    <h3>This is same domain AJAX call</h3>
+    <h3>Same domain AJAX call</h3>
     <p id="ajax1" style="color:green;">Here is where the AJAX response will append the text...</p>
-    <h3>And this the AJAX for the external URL content</h3>
+    <h3>External URL AJAX call</h3>
     <p id="ajax2" style="color:green;">Here is where the AJAX response will append the text...</p>
 
     <script>
@@ -47,22 +47,56 @@
         xhttp.send();
       }
 
-      function loadExternalDomainDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("#ajax2").innerHTML =
-            this.responseText;
-            console.log('Ajax 2 done');
-          }
+      // Create the XHR object.
+      function createCORSRequest(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+          // XHR for Chrome/Firefox/Opera/Safari.
+          xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+          // XDomainRequest for IE.
+          xhr = new XDomainRequest();
+          xhr.open(method, url);
+        } else {
+          // CORS not supported.
+          xhr = null;
+        }
+        return xhr;
+      }
+
+      // Helper method to parse the title tag from the response.
+      function getTitle(text) {
+        return text.match('<title>(.*)?</title>')[1];
+      }
+
+      // Make the actual CORS request.
+      function makeCorsRequest() {
+        // This is a sample server that supports CORS.
+        var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
+
+        var xhr = createCORSRequest('GET', url);
+        if (!xhr) {
+          alert('CORS not supported');
+          return;
+        }
+
+        // Response handlers.
+        xhr.onload = function() {
+          var text = xhr.responseText;
+          var title = getTitle(text);
+          document.getElementById("ajax2").innerHTML =
+          this.responseText;
         };
-        xhttp.open("GET", "https://en.wikipedia.org/wiki/Ajax_(programming)", true);
-        xhttp.send();
+
+        xhr.onerror = function() {
+          alert('Woops, there was an error making the request.');
+        };
+
+        xhr.send();
       }
 
       var onLoadList = [];
       changeOnLoad(loadSameDomainDoc);
-      changeOnLoad(loadExternalDomainDoc);
 
       function changeOnLoad(newFunc) {
              onLoadList.push(newFunc);
