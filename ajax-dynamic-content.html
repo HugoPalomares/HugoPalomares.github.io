@@ -75,12 +75,18 @@
           return;
         }
 
-        // External asset function
-        function loadExternalDomainDoc () {
-          var text = xhr.responseText;
-          document.getElementById("ajax2").innerHTML =
-          this.responseText;
-        };
+        function loadExternalDomainDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("ajax2").innerHTML =
+              this.responseText;
+              console.log('Ajax 2 done');
+            }
+          };
+          xhttp.open("GET", url, true);
+          xhttp.send();
+        }
 
         xhr.onerror = function() {
           alert('Woops, there was an error making the request.');
@@ -88,7 +94,7 @@
 
         xhr.send();
       }
-
+      // added function
       var onLoadList = [];
       changeOnLoad(loadSameDomainDoc);
       changeOnLoad(loadExternalDomainDoc);
