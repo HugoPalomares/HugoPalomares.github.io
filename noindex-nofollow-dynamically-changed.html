@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The tag in question. In the html is set at index, follow. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <script>
+      var metaRobots = document.getElementsByName("robots");
+      metaRobots[0].setAttribute("content", "index, follow");
+    </script>
+    <title>Google bot test: noindex, nofollow dynamically changed using ONLY Javascript</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet">
+  </head>
+  <body>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46952215-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  <header>
+    <h1>The other way around</h1>
+    <h2>JS to make page index</h2>
+  </header>
+  <main>
+    <p>This time we will se the page to be "noindex, nofollow" and will try to make Google bot index it by dynamically changing to "index, follow" with JS. This test is the exact opposite of the initial test.</p>
+  </main>
+  <footer>
+    <p>What the hell am I looking at? Well follow this <a href="index.html">Link to readme</a> and find out!</p>
+    <p>Or go to the <a href="index-follow.html">Link to control page!</a></p>
+    <p>Or go to the <a href="index-follow-dynamically-changed.html">Link to test page!</a></p>
+    <p>Or go to the <a href="index-follow-dynamically-inserted.html">Link to alternate test page!</a></p>
+    <p>Or go to the <a href="index-follow-dynamically-changed-vanilla.html">Link to javascript only test page!</a></p>
+    <p>Or go to the <a href="noindex-nofollow-dynamically-changed.html">Link to Test having the opposite effect than the initial testing</a></p>
+  </footer>
+  </body>
+</html>
