@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The tag in question. In the html is set at index, follow. -->
     <meta name="robots" content="index, follow" />
-    <title>Robots.txt test</title>
+    <title>AJAX content test</title>
     <link href="//cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet">
     <!-- Jquery is here to replicate the same scenario of the production page we are testing -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -23,10 +23,56 @@
 
 </script>
   <header>
-    <h1>What does Robotx.txt does?</h1>
+    <h1>AJAX content and Google crawlers</h1>
+    <h2>Is Google Bot crawling and indexing AJAX content?</h2>
   </header>
   <main>
-    <p>We understand the difference between indexing and crawling a website. With this test we want to see how Google Bots treats a previously indexed page after dissallowing crawling using robos.txt. Will it deindex it immediatly?</p>
+    <p>In this test we will try to call for 2 types of content using AJAX: content within the same domain and a container within an external domain.</p>
+    <h3>This is same domain AJAX call</h3>
+    <p id="ajax1">Here is where the AJAX response will append the text...</p>
+    <script>
+      function loadSameDomainDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("ajax1").innerHTML =
+            this.responseText;
+            console.log('Ajax 1 done');
+          }
+        };
+        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.send();
+      }
+
+      function loadExternalDomainDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById(".w3-panel.w3-info.intro").innerHTML =
+            this.responseText;
+            console.log('Ajax 2 done');
+          }
+        };
+        xhttp.open("GET", "https://www.w3schools.com/xml/ajax_intro.asp", true);
+        xhttp.send();
+      }
+
+      var onLoadList = [];
+      changeOnLoad(loadSameDomainDoc);
+      changeOnLoad(loadExternalDomainDoc);
+
+      function changeOnLoad(newFunc) {
+             onLoadList.push(newFunc);
+      }
+
+      window.onload = function() {
+        for (var i = 0; i < onLoadList.length; i++) {
+                onLoadList[i]();
+        }
+      }
+    </script>
+    <h3>And this the AJAX for the external URL content</h3>
+    <p id="ajax1">Here is where the AJAX response will append the text...</p>
   </main>
   <footer>
     <p>What am I looking at? <a href="index.html">Test home and explanation</a></p>
