@@ -39,7 +39,7 @@
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("ajax1").innerHTML =
-            this.responseText;
+            this.response;
             console.log('Ajax 1 done');
           }
         };
