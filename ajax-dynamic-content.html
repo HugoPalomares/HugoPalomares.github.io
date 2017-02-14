@@ -98,6 +98,7 @@
       var onLoadList = [];
       changeOnLoad(loadSameDomainDoc);
       changeOnLoad(makeCorsRequest);
+      // I removed a bad function call from here
 
       function changeOnLoad(newFunc) {
              onLoadList.push(newFunc);
