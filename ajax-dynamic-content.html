@@ -64,6 +64,11 @@
         return xhr;
       }
 
+      // Helper method to parse the title tag from the response.
+      function getTitle(text) {
+        return text.match('<title>(.*)?</title>')[1];
+      }
+
       // Make the actual CORS request.
       function makeCorsRequest() {
         // This is a sample server that supports CORS.
@@ -75,18 +80,13 @@
           return;
         }
 
-        function loadExternalDomainDoc() {
-          var xhttp = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("ajax2").innerHTML =
-              this.responseText;
-              console.log('Ajax 2 done');
-            }
-          };
-          xhttp.open("GET", url, true);
-          xhttp.send();
-        }
+        // Response handlers.
+        xhr.onload = function() {
+          var text = xhr.responseText;
+          var title = getTitle(text);
+          document.getElementById("ajax2").innerHTML =
+          this.responseText;
+        };
 
         xhr.onerror = function() {
           alert('Woops, there was an error making the request.');
@@ -94,10 +94,10 @@
 
         xhr.send();
       }
-      // added function
+
       var onLoadList = [];
       changeOnLoad(loadSameDomainDoc);
-      changeOnLoad(loadExternalDomainDoc);
+      changeOnLoad(makeCorsRequest);
 
       function changeOnLoad(newFunc) {
              onLoadList.push(newFunc);
