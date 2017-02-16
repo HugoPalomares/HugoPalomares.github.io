@@ -28,16 +28,17 @@
     <p>This simple test will try to answer only 1 question: <strong>Will Google bot index a page that has it's robots meta tag set to "index, follow" but dynamically modified to "noindex, nofollow" using JS?</strong> Some opinions say that Google will only look at the meta robots tag retrieved from the header response, meaning the source code, and not pay attention to the changes done after page load done by JS. Other opinions say that it will take the JS modification into acount as it is getting better at understanding the whole picture by parsing not only the document but JS and CSS external files.</p>
 
     <ol>
-      <li><a href="index-follow.html">Link to control page!</a> - Set to index, follow.</li>
-      <li><a href="index-follow-dynamically-changed.html">Link to test page!</a> - Using jQuery to change meta tag content from index, follow to noindex, nofollow after page load</li>
-      <li><a href="index-follow-dynamically-inserted.html">Link to alternate test page!</a> - Using jQuery to create the dom element with noindex, nofollow</li>
-      <li><a href="index-follow-dynamically-changed-vanilla.html">Link to javascript only test page!</a> - Same test as #2 but this time using pure Javascript</li>
-      <li><a href="noindex-nofollow-dynamically-changed.html">This will test having the opposite effect than the initial testing</a></li>
-      <li><a href="robots-crawling-indexing.html">Link to Test of Robots.txt</a></li>
+      <li><a href="index-follow.html">Control test</a></li>
+      <li><a href="index-follow-dynamically-changed.html">Test modifying DOM meta robots</a></li>
+      <li><a href="index-follow-dynamically-inserted.html">Test inserting DOM meta robots</a></li>
+      <li><a href="index-follow-dynamically-changed-vanilla.html">Test using Javascript only</a></li>
+      <li><a href="noindex-nofollow-dynamically-changed.html">Reverse test</a></li>
+      <li><a href="robots-crawling-indexing.html">Robots.txt test</a></li>
+      <li><a href="ajax-dynamic-content.html">AJAX content test</a></li>
 
     </ol>
 
-    <p><a href="https://github.com/HugoPalomares/HugoPalomares.github.io"> Code available at public repository</a></p>    
+    <p><a href="https://github.com/HugoPalomares/HugoPalomares.github.io"> Code available at public repository</a></p>
 
     <section>
     <h3>Results will go here once Google bot crawls this page...</h3>
