@@ -27,14 +27,15 @@
     <p>Have you ever had an SEO question and went to the web in search for answers only to be overcumbered by contradicting opinions? Me too.</p>
     <p>This simple test will try to answer only 1 question: <strong>Will Google bot index a page that has it's robots meta tag set to "index, follow" but dynamically modified to "noindex, nofollow" using JS?</strong> Some opinions say that Google will only look at the meta robots tag retrieved from the header response, meaning the source code, and not pay attention to the changes done after page load done by JS. Other opinions say that it will take the JS modification into acount as it is getting better at understanding the whole picture by parsing not only the document but JS and CSS external files.</p>
 
+    <h2>Will Google bot index pages that modify or insert dynamically the meta robots html tag?</h2>
     <ol>
       <li><a href="index-follow.html">Control test</a></li>
-      <li><a href="index-follow-dynamically-changed.html">Test modifying DOM meta robots</a></li>
-      <li><a href="index-follow-dynamically-inserted.html">Test inserting DOM meta robots</a></li>
-      <li><a href="index-follow-dynamically-changed-vanilla.html">Test using Javascript only</a></li>
-      <li><a href="noindex-nofollow-dynamically-changed.html">Reverse test</a></li>
-      <li><a href="robots-crawling-indexing.html">Robots.txt test</a></li>
-      <li><a href="ajax-dynamic-content.html">AJAX content test</a></li>
+      <li><a href="index-follow-dynamically-changed.html">Test modifying DOM meta robots</a> - <span style="color:green;">It works!</span></li>
+      <li><a href="index-follow-dynamically-inserted.html">Test inserting DOM meta robots</a> - <span style="color:green;">It works!</span></li>
+      <li><a href="index-follow-dynamically-changed-vanilla.html">Test using Javascript only</a> - <span style="color:green;">It works!</span></li>
+      <li><a href="noindex-nofollow-dynamically-changed.html">Reverse test</a> - <span style="color:red;">It didn't work :(</span></li>
+      <li><a href="robots-crawling-indexing.html">Robots.txt test</a> - not apply</li>
+      <li><a href="ajax-dynamic-content.html">AJAX content test</a> - processing...</li>
 
     </ol>
 
