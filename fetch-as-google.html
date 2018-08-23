@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://aircanada-dev.everymundo.com/bundles/actrfx/less/5407321.css?1534776146">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .presentation-description {
+  background-color: #eee;
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px 0 30px;
+}
+.demo {
+  margin-top: 20px;
+}
+.refresh {
+  color: #D8292F;
+  font-size: 14px;
+  border: none;
+  vertical-align: middle;
+  padding-top: 4px;
+}
+.refresh .material-icons {
+  vertical-align: middle;
+  font-size: 20px;
+}
+.disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+.offer.offer--loading {
+  display: none;
+}
+.loading .offer--loading {
+  display: block;
+  min-height: 165px;
+  position: relative;
+  border: none;
+}
+.loading .offer--loading:focus,
+.loading .offer--loading:hover {
+  box-shadow: none;
+}
+@media (min-width: 768px) {
+  .loading .offer--loading {
+    min-height: 134px;
+  }
+}
+.loading .offer-title--loading {
+  min-height: 26px;
+  margin-bottom: 8px;
+  max-width: 40%;
+}
+.loading .offer-text--loading {
+  min-height: 14px;
+  margin-bottom: 5px;
+  max-width: 50%;
+}
+.loading .button--loading {
+  min-height: 48px;
+  margin-top: 35px;
+}
+@media (min-width: 768px) {
+  .loading .button--loading {
+    width: 35%;
+    float: right;
+    margin-top: 0px;
+  }
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+.animated-background,
+.loading .offer-title--loading,
+.loading .offer-text--loading,
+.loading .button--loading {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+  animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: #eeeeee;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 900px 100px;
+  position: relative;
+}
+.rotate {
+  animation: spin 1.5s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    var dummyHtml = '<div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div>';
+
+    $( document ).ready(function() {
+        var elem = $('.js-refresh');
+        loadingExample(elem);
+        setTimeout(function(){ undoingLoadingExample(elem); }, 3000);
+    });
+
+    $('.js-refresh').on('click', function(){
+    var elem = $(this);
+    loadingExample(elem);
+    setTimeout(function(){ undoingLoadingExample(elem); }, 3000);    
+    });
+
+    function loadingExample(elem) {
+    $('body').append("<div role='alert' class='sr-only alert'>Loading</div>");
+    $(elem).addClass('disabled');
+    $(elem).find('.material-icons').addClass('rotate');
+    $(elem).closest('.trfx-container').addClass('loading');
+    $(elem).closest('.trfx-container').find('.offer').addClass('hide');
+    $(elem).closest('.trfx-container').find('.offers-container').append(dummyHtml);
+    
+    changePriceValue(elem);
+    }
+
+    function undoingLoadingExample(elem) {
+    $('.alert').text('Loading complete');
+    $(elem).removeClass('disabled');
+    $(elem).find('.material-icons').removeClass('rotate');
+    $(elem).closest('.trfx-container').removeClass('loading');
+    $(elem).closest('.trfx-container').find('.offer').removeClass('hide');
+    $(elem).closest('.trfx-container').find('.offer--loading').remove();
+    }
+
+    function changePriceValue(elem) {
+    var priceValueArr = $(elem).closest('.trfx-container').find('.offer--price--value');
+    $(priceValueArr).each(function(){
+        var text = $(this).text();
+        var num = parseInt(text, 10) - 7;//Random math just to visually change numbers
+        
+        $(this).text(num);
+    });
+    }
+
+    var priceArr = $('.trfx-container').find('.offer--price--value');
+    $(priceArr).each(function(){
+    var text = $(this).text();
+    var num = parseInt(text, 10);
+    console.log("Who? ",num+1);
+    });
+    </script>
+    <title>Fetch as google test</title>
+  </head>
+  <body>        
+        <div class="presentation-description">
+        <div class="container">
+          <h1>Asynchronous Pricing Widget</h1>
+          <h2>Interactive mockup</h2>
+          <h3>What it is</h3>
+          <ul>
+            <li>Getting data asynchronously on the client-side will allow entire page cache times to increase without worrying of price accuracy</li>
+            <li>Widget loads with back-end data as usual for best SEO</li>
+            <li>Widget will have loading effect from the start. Data might be outdated so we want to avoid confusing users with price changes</li>
+            <li>Widget will asychronously call the back-end JSON API to check if there are data differences</li>
+            <li>Widget will update new data and remove loading effect</li>
+            <li>This solution is relatively easy to implement and we can benefit the product quickly</li>
+            <li>Without preassure of cache/performance FC team can work at their own pace</li>
+          </ul>
+          <h3>Challenges</h3>
+          <ul>
+            <li>Will back-end JSON API support traffic influx?</li>
+            <li>Can Front-end consume client-side this API?</li>
+            <li>Align interaction and design with FC</li>
+          </ul>
+        </div>
+        </div>
+        
+        <!-- Start demo -->
+        <div class="demo">
+        
+            <div class="trfx-container trfx-container-pricing-widget" data-module="price_widget" data-position="5">
+                <div class="pricing-widget modules container">
+                    <div class="modules-header">
+                        <h3 class="modules-title">Book a flight from Toronto 
+                          <button class="js-refresh refresh">Update<i class="material-icons">sync</i></button>
+                        </h3>
+                    </div>
+                    <div class="offers-container">
+        <!--               <div class="offer offer--loading">
+                        <div class="offer-title--loading"></div>
+                        <div class="offer-text--loading"></div>
+                        <div class="button--loading"></div>
+                      </div> -->
+                      <div class="offer" trfx-booking="" data-oac="YYZ" data-dac="ORD" data-departure-date="12/17/2018" data-price="CAD 170" data-title="Toronto preposition--destination-place Chicago" data-sub="label--itinerary: Dec 17, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YYZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> Chicago <abbr title="Chicago">(ORD)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Dec 17, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">170</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="offer" trfx-booking="" data-oac="YYZ" data-dac="ORD" data-departure-date="12/17/2018" data-price="CAD 170" data-title="Toronto preposition--destination-place Chicago" data-sub="label--itinerary: Dec 17, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YYZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> Chicago <abbr title="Chicago">(ORD)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Dec 17, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">170</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer" trfx-booking="" data-oac="YTZ" data-dac="ORD" data-departure-date="10/26/2018" data-price="CAD 174" data-title="Toronto preposition--destination-place Chicago" data-sub="label--itinerary: Oct 26, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YTZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> Chicago <abbr title="Chicago">(ORD)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Oct 26, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">174</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer" trfx-booking="" data-oac="YYZ" data-dac="LGA" data-departure-date="12/15/2018" data-price="CAD 147" data-title="Toronto preposition--destination-place New York" data-sub="label--itinerary: Dec 15, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YYZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> New York <abbr title="New York">(LGA)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Dec 15, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">147</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer" trfx-booking="" data-oac="YTZ" data-dac="LGA" data-departure-date="09/25/2018" data-price="CAD 208" data-title="Toronto preposition--destination-place New York" data-sub="label--itinerary: Sep 25, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YTZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> New York <abbr title="New York">(LGA)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Sep 25, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">208</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer" trfx-booking="" data-oac="YYZ" data-dac="MSY" data-departure-date="09/11/2018" data-price="CAD 288" data-title="Toronto preposition--destination-place New Orleans" data-sub="label--itinerary: Sep 11, 2018" data-promo-code="" data-site-edition="" data-currency-code="CAD">
+                            <div class="offer--details">
+                                <div class="offer--origin">
+                                    Toronto <abbr title="Toronto">(YYZ)</abbr>
+                                </div>
+                                <div class="offer--destination">
+                                    <span>to</span> New Orleans <abbr title="New Orleans">(MSY)</abbr>
+                                </div>
+                                <div class="offer--dates"><span class="offer--dates-departure">Sep 11, 2018</span>
+                                </div>
+                            </div>
+                            <div class="offer-cta">
+                                <div class="offer-cta--container">
+                                    <div class="offer--price">
+                                        <abbr class="offer--price--currency">CAD</abbr><span class="offer--price--value">288</span>
+                                    </div>
+                                    <div class="offer--trip-type">
+                                        <span class="offer--trip-type--oneway">Each way fare</span>
+                                        <span class="offer--trip-class">economy</span>
+                                    </div>
+        
+                                    <button class="button--cta">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+  </body>
+</html>
