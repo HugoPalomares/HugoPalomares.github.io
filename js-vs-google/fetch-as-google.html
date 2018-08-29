@@ -122,21 +122,20 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-    var dummyHtml = '<div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div>';
-
-
-
     $('.js-refresh').on('click', function(){
     var elem = $(this);
     loadingExample(elem);
     setTimeout(function(){ undoingLoadingExample(elem) }, 4000);    
     });
+    </script>
+    <script>
+    var dummyHtml = '<div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div>';
       
-//       $( document ).ready(function() {
-//         var elem = $('.js-refresh');
-//         loadingExample(elem);
-//         setTimeout(function(){ undoingLoadingExample(elem) }, 4000);
-//     });
+    $( document ).ready(function() {
+        var elem = $('.js-refresh');
+        loadingExample(elem);
+        setTimeout(function(){ undoingLoadingExample(elem) }, 4000);
+    });
 
     function loadingExample(elem) {
     $(elem).addClass('disabled');
