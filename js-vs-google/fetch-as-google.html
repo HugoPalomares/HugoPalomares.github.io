@@ -122,11 +122,11 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-    $('.js-refresh').on('click', function(){
-    var elem = $(this);
-    loadingExample(elem);
-    setTimeout(function(){ undoingLoadingExample(elem) }, 4000);    
-    });
+    $(".js-refresh").on("click", function(){
+    var elementRefresh = $(this);
+    loadingExample(elementRefresh);
+    setTimeout(function(){ undoingLoadingExample(elementRefresh) }, 4000);
+});
     </script>
     <script>
     var dummyHtml = '<div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div>';
