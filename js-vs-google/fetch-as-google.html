@@ -123,16 +123,18 @@
     <script>
     var dummyHtml = '<div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div><div class="offer offer--loading"> <div class="offer-title--loading"></div><div class="offer-text--loading"></div><div class="button--loading"></div></div>';
 
-    $( document ).ready(function() {
-        var elem = $('.js-refresh');
-        loadingExample(elem);
-        setTimeout(function(){ undoingLoadingExample(elem); }, 8000);
-    });
+
 
     $('.js-refresh').on('click', function(){
     var elem = $(this);
     loadingExample(elem);
-    setTimeout(function(){ undoingLoadingExample(elem); }, 4000);    
+    setTimeout(function(){ undoingLoadingExample(elem) }, 4000);    
+    });
+      
+      $( document ).ready(function() {
+        var elem = $('.js-refresh');
+        loadingExample(elem);
+        setTimeout(function(){ undoingLoadingExample(elem) }, 4000);
     });
 
     function loadingExample(elem) {
