@@ -132,14 +132,13 @@
     setTimeout(function(){ undoingLoadingExample(elem) }, 4000);    
     });
       
-      $( document ).ready(function() {
-        var elem = $('.js-refresh');
-        loadingExample(elem);
-        setTimeout(function(){ undoingLoadingExample(elem) }, 4000);
-    });
+//       $( document ).ready(function() {
+//         var elem = $('.js-refresh');
+//         loadingExample(elem);
+//         setTimeout(function(){ undoingLoadingExample(elem) }, 4000);
+//     });
 
     function loadingExample(elem) {
-    $('body').append("<div role='alert' class='sr-only alert'>Loading</div>");
     $(elem).addClass('disabled');
     $(elem).find('.material-icons').addClass('rotate');
     $(elem).closest('.trfx-container').addClass('loading');
